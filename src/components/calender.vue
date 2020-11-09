@@ -1,6 +1,13 @@
 <template>
   <div>
-    <b-table striped hover :items="items" :fields="fields"></b-table>
+    <b-table
+      hover
+      responsive
+      head-variant="dark"
+      bordered
+      :items="items" 
+      :fields="fields">
+    </b-table>
   </div>
 </template>
 

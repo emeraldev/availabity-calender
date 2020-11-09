@@ -13,6 +13,8 @@
 import Calender from './calender'
 import dates from '../data/dates.json'
 
+import moment from 'moment'
+
 export default {
   components: {
     Calender
@@ -44,12 +46,18 @@ export default {
     },
     setLength() {
       this.table = []
-      this.fields.push('___')
+      this.fields.push({
+            key: '___',
+          })
       var count1 = 0
       this.full.forEach(time => { 
       var count = 0
         dates.forEach(date => {
-          this.fields.push(date.Date)
+          this.fields.push(
+          {
+            key: date.Date,
+            label: moment(date.Date).format("dddd Do"),
+          })
           let slot = this.checkSlotAvailability(time, this.jobLength, date.Date, date.HoursAvailable)
           var item = []
           /* item[count1] = {
@@ -60,9 +68,10 @@ export default {
             '2016-05-23': date.Date === '2016-05-23' ? slot : '',
             '2016-05-24': date.Date === '2016-05-24' ? slot : '',
           } */
+          console.log(count)
 
-          item[count1] = {
-            '___': count, 
+          item = {
+            '___': this.full[count1 + 1] ? time +':00 to ' + this.full[count1 + 1] + ':00' : time +':00 ', 
             '2016-05-18': '',
             '2016-05-19': '',
             '2016-05-20': '',
@@ -72,34 +81,28 @@ export default {
           }
 
           if (date.Date === '2016-05-18') {
-            item[count1]['2016-05-18'] = slot
+            item['2016-05-18'] = slot
           } 
           if (date.Date === '2016-05-19') {
-            item[count1]['2016-05-19'] = slot
+            item['2016-05-19'] = slot
           } 
           if (date.Date === '2016-05-20') {
-            item[count1]['2016-05-20'] = slot
+            item['2016-05-20'] = slot
           } 
           if (date.Date === '2016-05-21') {
-            item[count1]['2016-05-21'] = slot
+            item['2016-05-21'] = slot
           } 
           if (date.Date === '2016-05-23') {
-            item[count1]['2016-05-23'] = slot
+            item['2016-05-23'] = slot
           }
           if (date.Date === '2016-05-24') {
-            item[count1]['2016-05-24'] = slot
+            item['2016-05-24'] = slot
           }
 
           
           //console.log(count)
 
-          this.table.push(item[count1])
-          date.HoursAvailable.forEach(avb => {
-            if (time === avb) {
-              // console.log(avb)
-            }
-            
-          });
+          this.table.push(item)
           count++
         });
         count1++
