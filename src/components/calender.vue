@@ -31,11 +31,10 @@ export default {
     }
   },
   mounted() {
-    console.log(this.data)
+    this.items = this.data
   },
   watch: {
     data(val) {
-      console.log(val)
       this.items = val
     }
   }

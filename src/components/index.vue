@@ -49,9 +49,8 @@ export default {
       this.fields.push({
             key: '___',
           })
-      var count1 = 0
-      this.full.forEach(time => { 
       var count = 0
+      this.full.forEach(time => { 
         dates.forEach(date => {
           this.fields.push(
           {
@@ -68,10 +67,9 @@ export default {
             '2016-05-23': date.Date === '2016-05-23' ? slot : '',
             '2016-05-24': date.Date === '2016-05-24' ? slot : '',
           } */
-          console.log(count)
 
           item = {
-            '___': this.full[count1 + 1] ? time +':00 to ' + this.full[count1 + 1] + ':00' : time +':00 ', 
+            '___': this.full[count + 1] ? time +':00 to ' + this.full[count + 1] + ':00' : time +':00 ', 
             '2016-05-18': '',
             '2016-05-19': '',
             '2016-05-20': '',
@@ -82,30 +80,47 @@ export default {
 
           if (date.Date === '2016-05-18') {
             item['2016-05-18'] = slot
+            item._cellVariants = {
+              '2016-05-18': slot === 'FULL' ? 'danger' : slot === 'UNAVAILABLE' ? 'warning' : ''
+            }
           } 
           if (date.Date === '2016-05-19') {
             item['2016-05-19'] = slot
+            item._cellVariants = {
+              '2016-05-19': slot === 'FULL' ? 'danger' : slot === 'UNAVAILABLE' ? 'warning' : ''
+            }
           } 
           if (date.Date === '2016-05-20') {
             item['2016-05-20'] = slot
+            item._cellVariants = {
+              '2016-05-20': slot === 'FULL' ? 'danger' : slot === 'UNAVAILABLE' ? 'warning' : ''
+            }
           } 
           if (date.Date === '2016-05-21') {
             item['2016-05-21'] = slot
+            item._cellVariants = {
+              '2016-05-21': slot === 'FULL' ? 'danger' : slot === 'UNAVAILABLE' ? 'warning' : ''
+            }
           } 
           if (date.Date === '2016-05-23') {
             item['2016-05-23'] = slot
+            item._cellVariants = {
+              '2016-05-23': slot === 'FULL' ? 'danger' : slot === 'UNAVAILABLE' ? 'warning' : ''
+            }
           }
           if (date.Date === '2016-05-24') {
             item['2016-05-24'] = slot
+            item._cellVariants = {
+              '2016-05-24': slot === 'FULL' ? 'danger' : slot === 'UNAVAILABLE' ? 'warning' : ''
+            }
           }
 
           
           //console.log(count)
 
           this.table.push(item)
-          count++
         });
-        count1++
+        count++
       });
     }
   },
