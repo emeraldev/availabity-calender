@@ -3,7 +3,7 @@
     <b-card title="AVAILABILITY CALENDAR " sub-title="Bluegrass Digital Limited">
       <div>
         <label for="range-1">{{ jobLength }} HR/s</label>
-        <b-form-input id="range-1" v-model="jobLength" @change="setLength" type="range" min="0" max="7"></b-form-input>
+        <b-form-input id="range-1" v-model="jobLength" @change="setLength" type="range" min="0" max="5"></b-form-input>
       </div>
       <calender :data="table" :tuples="fields"/>
     </b-card>
@@ -24,7 +24,7 @@ export default {
     fields: [],
     job: null,
     table: [],
-    jobLength: 0,
+    jobLength: 1,
   }),
   methods: {
     checkSlotAvailability(time, jobLength, date, availabilty) {
@@ -34,7 +34,6 @@ export default {
         var fullTime = (index + jobLength) - 1
         var nxt = this.full[fullTime + 1]
         var buffer = availabilty.find(slot => slot === nxt)
-        console.log(jobLength)
         if (buffer) {
           return 'AVAILABLE'
         } else {
@@ -129,3 +128,15 @@ export default {
   }
 };
 </script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+  html, body {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  #app {
+    font-family: 'Roboto', sans-serif;
+  }
+</style>
